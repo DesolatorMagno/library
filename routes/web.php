@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/books', 'BooksController@store')->name('books.store');
 Route::patch('/books/{book}', 'BooksController@update')->name('books.update');
+Route::delete('/books/{book}', 'BooksController@destroy')->name('books.destroy');
+Route::get('/books', 'BooksController@index')->name('books.index');
+Route::get('/books/{book}', 'BooksController@show')->name('books.show');
