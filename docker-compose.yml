@@ -19,6 +19,23 @@ services:
       ports:
         - "${DB_PORT}:${DB_PORT}"
 
+    testdb:
+      image: mysql:5.7
+      tmpfs: /var/lib/mysql
+      container_name: ${APP_NAME}-mysql-test
+      working_dir: /application
+      restart: unless-stopped
+      volumes:
+        - .:/application
+      environment:
+        MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+        MYSQL_DATABASE: "${DB_DATABASE}"
+        MYSQL_USER: "${DB_USERNAME}"
+        MYSQL_PASSWORD: "${DB_PASSWORD}"
+        MYSQL_ROOT_HOST: "%"
+      ports:
+        - "3308:${DB_PORT}"
+
     webserver:
       image: nginx:alpine
       container_name: ${APP_NAME}-webserver
