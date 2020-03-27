@@ -20,3 +20,10 @@ Route::get('/books', 'BooksController@index')->name('books.index');
 Route::get('/books/{book}', 'BooksController@show')->name('books.show');
 
 Route::post('author', 'AuthorController@store')->name('authors.store');
+
+Route::post('/checkout/{book}', 'CheckoutBookController@store')->name('checkout.store')->middleware('auth');
+Route::post('/checkin/{book}', 'CheckinBookController@store')->name('checkin.store')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
